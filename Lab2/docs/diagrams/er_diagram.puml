@@ -1,0 +1,49 @@
+@startuml
+hide circle
+skinparam linetype ortho
+
+entity roles {
+  * role_id : INTEGER <<PK>>
+  --
+  * name : TEXT <<UNIQUE>>
+}
+
+entity users {
+  * user_id : INTEGER <<PK>>
+  --
+  * login : TEXT <<UNIQUE>>
+  * password_hash : TEXT
+  * role_id : INTEGER <<FK>>
+}
+
+entity driver_statuses {
+  * status_id : INTEGER <<PK>>
+  --
+  * name : TEXT <<UNIQUE>>
+}
+
+entity drivers {
+  * driver_id : INTEGER <<PK>>
+  --
+  * user_id : INTEGER <<FK, UNIQUE>>
+  * full_name : TEXT
+  * age : INTEGER
+  * experience_years : INTEGER
+  * status_id : INTEGER <<FK>>
+}
+
+entity driver_blocks {
+  * block_id : INTEGER <<PK>>
+  --
+  * driver_id : INTEGER <<FK>>
+  * admin_id : INTEGER <<FK>>
+  * reason : TEXT
+  * blocked_at : TEXT
+}
+
+roles ||--o{ users : "1:N"
+users ||--o| drivers : "1:1"
+driver_statuses ||--o{ drivers : "1:N"
+drivers ||--o{ driver_blocks : "1:N"
+users ||--o{ driver_blocks : "админ, 1:N"
+@enduml

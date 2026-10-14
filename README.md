@@ -114,3 +114,32 @@ python src/main.py
 ```bash
 python3 src/main.py
 ```
+#Проектирование базы данных
+
+## ER-диаграмма
+
+![ER-диаграмма](Lab2/docs/diagrams/er_diagram.png)
+
+## Описание таблиц
+
+| Таблица | Назначение |
+|---|---|
+| roles | Роли пользователей (Водитель, Администратор) |
+| users | Учётные записи: логин, хеш пароля, роль |
+| driver_statuses | Статусы водителей (Активен, Заблокирован, На проверке) |
+| drivers | Данные водителя: ФИО, возраст, стаж, статус |
+| driver_blocks | Блокировки водителей администраторами |
+
+## Связи
+
+- roles → users: 1:N
+- users → drivers: 1:1
+- driver_statuses → drivers: 1:N
+- drivers → driver_blocks: 1:N
+- users (администратор) → driver_blocks: 1:N
+
+## База данных
+
+СУБД: SQLite. Файлы в `Lab2/database/`:
+- `shema.sql`: создание таблиц (CREATE TABLE) и тестовые данные (INSERT INTO)
+- `taxi.db`: готовая база
