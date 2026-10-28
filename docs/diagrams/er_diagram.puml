@@ -28,7 +28,7 @@ entity drivers {
   * user_id : INTEGER <<FK, UNIQUE>>
   * full_name : TEXT
   * age : INTEGER
-  * experience_years : INTEGER
+  * Data_drivers_expirience : INTEGER
   * status_id : INTEGER <<FK>>
 }
 

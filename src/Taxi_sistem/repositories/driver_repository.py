@@ -6,7 +6,7 @@ _SELECT = """
            d.user_id,
            d.full_name,
            d.age,
-           d.experience_years,
+           d.Data_drivers_expirience,
            d.status_id,
            s.name,
            u.login
@@ -24,17 +24,17 @@ def create(
     user_id: int,
     full_name: str,
     age: int,
-    experience_years: int,
+    Data_drivers_expirience: int,
     status_id: int,
 ) -> int:
     conn = get_connection()
     cur = conn.cursor()
     cur.execute(
         """
-        INSERT INTO drivers(user_id, full_name, age, experience_years, status_id)
+        INSERT INTO drivers(user_id, full_name, age, Data_drivers_expirience, status_id)
         VALUES (?, ?, ?, ?, ?)
         """,
-        (user_id, full_name, age, experience_years, status_id),
+        (user_id, full_name, age, Data_drivers_expirience, status_id),
     )
     conn.commit()
     new_id = cur.lastrowid
@@ -69,7 +69,9 @@ def get_all() -> list[Driver]:
     return [_map(r) for r in rows]
 
 
-def update(driver_id: int, full_name: str, age: int, experience_years: int):
+def update(
+    driver_id: int, full_name: str, age: int, Data_drivers_expirience: int
+):
     conn = get_connection()
     cur = conn.cursor()
     cur.execute(
@@ -77,10 +79,10 @@ def update(driver_id: int, full_name: str, age: int, experience_years: int):
         UPDATE drivers
         SET full_name = ?,
             age = ?,
-            experience_years = ?
+            Data_drivers_expirience = ?
         WHERE driver_id = ?
         """,
-        (full_name, age, experience_years, driver_id),
+        (full_name, age, Data_drivers_expirience, driver_id),
     )
     conn.commit()
     conn.close()

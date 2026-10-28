@@ -30,7 +30,7 @@ def register_driver(
     password: str,
     full_name: str,
     age: int,
-    experience_years: int,
+    Data_drivers_expirience: int,
 ):
     login = login.strip()
     full_name = full_name.strip()
@@ -43,9 +43,9 @@ def register_driver(
         raise Exception("ФИО не может быть пустым")
     if age < 18:
         raise Exception("Водитель должен быть старше 18 лет")
-    if experience_years < 0:
+    if Data_drivers_expirience < 0:
         raise Exception("Стаж не может быть отрицательным")
-    if experience_years > age - 18:
+    if Data_drivers_expirience > age - 18:
         raise Exception("Стаж не может превышать (возраст - 18) лет")
 
     if user_repository.get_by_login(login):
@@ -57,7 +57,7 @@ def register_driver(
 
     try:
         driver_repository.create(
-            user_id, full_name, age, experience_years, STATUS_ACTIVE
+            user_id, full_name, age, Data_drivers_expirience, STATUS_ACTIVE
         )
     except Exception:
         # откатываем созданного пользователя, чтобы не оставлять "пустой" аккаунт

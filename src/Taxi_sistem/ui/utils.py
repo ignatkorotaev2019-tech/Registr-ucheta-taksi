@@ -24,5 +24,5 @@ def print_driver(driver):
     print(f"  Логин       : {driver.login}")
     print(f"  ФИО         : {driver.full_name}")
     print(f"  Возраст     : {driver.age}")
-    print(f"  Стаж за рулём: {years(driver.experience_years)}")
+    print(f"  Стаж за рулём: {years(driver.Data_drivers_expirience)}")
     print(f"  Статус      : {driver.status_name}")
