@@ -35,13 +35,13 @@ CREATE TABLE drivers (
     user_id INTEGER NOT NULL UNIQUE,
     full_name TEXT NOT NULL,
     age INTEGER NOT NULL CHECK (age >= 18),
-    experience_years INTEGER NOT NULL
-        CHECK (experience_years >= 0),
+    Data_drivers_expirience INTEGER NOT NULL
+    CHECK (Data_drivers_expirience >= 0),
     status_id INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (status_id)
         REFERENCES driver_statuses(status_id),
-    CHECK (experience_years <= age - 18)
+    CHECK (Data_drivers_expirience <= age - 18)
 );
 
 -- 5. Блокировки водителей
@@ -75,7 +75,7 @@ INSERT INTO users (login, password_hash, role_id) VALUES
 
 -- Тестовые водители
 INSERT INTO drivers
-    (user_id, full_name, age, experience_years, status_id)
+    (user_id, full_name, age, Data_drivers_expirience, status_id)
 VALUES
     (1, 'Иванов Иван Иванович', 30, 8, 1),
     (2, 'Петров Пётр Петрович', 25, 4, 3);
